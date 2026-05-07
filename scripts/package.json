@@ -1,0 +1,24 @@
+{
+  "name": "@workspace/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "hello": "tsx ./src/hello.ts",
+    "import:trails": "tsx ./src/import-trails.ts",
+    "seed-trails": "tsx ./src/seed-trails.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.2.0",
+    "@workspace/db": "*",
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.2",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "@types/pg": "^8.15.5",
+    "tsx": "^4.21.0"
+  }
+}

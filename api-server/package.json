@@ -1,0 +1,30 @@
+{
+  "name": "@workspace/api-server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development tsx ./src/index.ts",
+    "build": "tsx ./build.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@workspace/api-zod": "*",
+    "@workspace/db": "*",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2",
+    "drizzle-orm": "^0.45.1",
+    "express": "^5",
+    "openid-client": "^6.8.2"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.3",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.27.3",
+    "tsx": "^4.21.0"
+  }
+}
