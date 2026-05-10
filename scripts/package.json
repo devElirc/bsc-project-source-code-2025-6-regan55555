@@ -7,6 +7,11 @@
     "hello": "tsx ./src/hello.ts",
     "import:trails": "tsx ./src/import-trails.ts",
     "seed-trails": "tsx ./src/seed-trails.ts",
+    "eval:ai-discover": "tsx ./eval/eval-ai-discover-goldset.ts",
+    "eval:perf-smoke": "tsx ./eval/perf-smoke.ts",
+    "eval:security-smoke": "tsx ./eval/security-smoke.ts",
+    "eval:worked-examples": "tsx ./eval/worked-examples.ts",
+    "eval:reco-example": "tsx ./eval/recommendation-worked-example.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {

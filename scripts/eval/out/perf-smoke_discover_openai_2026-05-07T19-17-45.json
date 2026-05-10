@@ -1,0 +1,24 @@
+{
+  "environment": {
+    "node": "v22.19.0",
+    "platform": "Windows_NT 10.0.19045",
+    "cpus": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "ramBytes": 34241392640,
+    "ramGb": 31.9,
+    "trailRowCount": 189,
+    "apiBaseUrl": "http://localhost:5000",
+    "perfPhase": "discover",
+    "discoverExpectedSource": "openai",
+    "perfN": 20
+  },
+  "tableRows": [
+    {
+      "endpoint": "POST /api/ai/discover-parse",
+      "condition": "LLM-enabled mode",
+      "n": 20,
+      "meanMs": 8790,
+      "stdMs": 1138.3,
+      "notes": "Includes external provider round-trip time."
+    }
+  ]
+}

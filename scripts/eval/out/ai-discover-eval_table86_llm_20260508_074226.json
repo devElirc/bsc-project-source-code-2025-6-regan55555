@@ -1,0 +1,526 @@
+{
+  "summary": {
+    "title": "AI discover-parse gold set (dissertation Tables 8.5–8.6)",
+    "runLabel": "table86_llm",
+    "endpoint": "http://localhost:5000/api/ai/discover-parse",
+    "totalUtterances": 24,
+    "counts": {
+      "exact": 18,
+      "partial": 1,
+      "safe_degrade": 5,
+      "fail": 0
+    },
+    "table86": [
+      {
+        "category": "Difficulty only",
+        "utterancesTested": 3,
+        "exact": 3,
+        "partial": 0,
+        "safe_degrade": 0,
+        "fail": 0
+      },
+      {
+        "category": "Length upper bound",
+        "utterancesTested": 3,
+        "exact": 3,
+        "partial": 0,
+        "safe_degrade": 0,
+        "fail": 0
+      },
+      {
+        "category": "Length lower bound",
+        "utterancesTested": 3,
+        "exact": 0,
+        "partial": 0,
+        "safe_degrade": 3,
+        "fail": 0
+      },
+      {
+        "category": "Region or place",
+        "utterancesTested": 3,
+        "exact": 1,
+        "partial": 0,
+        "safe_degrade": 2,
+        "fail": 0
+      },
+      {
+        "category": "Terrain or scenery",
+        "utterancesTested": 3,
+        "exact": 3,
+        "partial": 0,
+        "safe_degrade": 0,
+        "fail": 0
+      },
+      {
+        "category": "Combined constraints",
+        "utterancesTested": 4,
+        "exact": 3,
+        "partial": 1,
+        "safe_degrade": 0,
+        "fail": 0
+      },
+      {
+        "category": "Ambiguous or vague input",
+        "utterancesTested": 2,
+        "exact": 2,
+        "partial": 0,
+        "safe_degrade": 0,
+        "fail": 0
+      },
+      {
+        "category": "Edge cases",
+        "utterancesTested": 3,
+        "exact": 3,
+        "partial": 0,
+        "safe_degrade": 0,
+        "fail": 0
+      },
+      {
+        "category": "Total",
+        "utterancesTested": 24,
+        "exact": 18,
+        "partial": 1,
+        "safe_degrade": 5,
+        "fail": 0
+      }
+    ],
+    "notes": [
+      "category must match dissertation Table 8.6 rows exactly.",
+      "scoring=minimal_acceptable_only: Exact if response has ≤1 substantive key and it is search (or completely empty filters). Useful for ambiguous utterances.",
+      "After API changes, minLength/scenery appear in discover-parse JSON when inferred."
+    ]
+  },
+  "results": [
+    {
+      "id": "D01",
+      "category": "Difficulty only",
+      "text": "easy family walks",
+      "expected": {
+        "difficulty": "easy"
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "easy",
+        "maxLength": 5
+      },
+      "summary": "Filtering for short, easy family-friendly walks (up to ~5 km and low elevation).",
+      "elapsedMs": 11134
+    },
+    {
+      "id": "D02",
+      "category": "Difficulty only",
+      "text": "moderate hiking routes",
+      "expected": {
+        "difficulty": "moderate"
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "moderate"
+      },
+      "summary": "Showing routes filtered to moderate difficulty.",
+      "elapsedMs": 3666
+    },
+    {
+      "id": "D03",
+      "category": "Difficulty only",
+      "text": "I'm looking for hard trails only",
+      "expected": {
+        "difficulty": "hard"
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "hard"
+      },
+      "summary": "Showing trails filtered to hard difficulty only.",
+      "elapsedMs": 3852
+    },
+    {
+      "id": "LHi01",
+      "category": "Length upper bound",
+      "text": "trails under 12 km please",
+      "expected": {
+        "maxLength": 12
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "maxLength": 12
+      },
+      "summary": "Showing trails shorter than 12 km.",
+      "elapsedMs": 8049
+    },
+    {
+      "id": "LHi02",
+      "category": "Length upper bound",
+      "text": "below 65 km hikes",
+      "expected": {
+        "maxLength": 65
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "maxLength": 65
+      },
+      "summary": "Filtering for hikes shorter than 65 km.",
+      "elapsedMs": 3741
+    },
+    {
+      "id": "LHi03",
+      "category": "Length upper bound",
+      "text": "shorter than 200 km coastal routes maximum",
+      "expected": {
+        "maxLength": 200
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "terrain": "coastal",
+        "maxLength": 200
+      },
+      "summary": "Showing coastal routes with length up to 200 km.",
+      "elapsedMs": 5522
+    },
+    {
+      "id": "LLo01",
+      "category": "Length lower bound",
+      "text": "routes longer than 18 km",
+      "expected": {
+        "minLength": 18
+      },
+      "outcome": "safe_degrade",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {},
+      "summary": "Filtered for routes longer than 18 km.",
+      "elapsedMs": 8212
+    },
+    {
+      "id": "LLo02",
+      "category": "Length lower bound",
+      "text": "walks over 6 km minimum",
+      "expected": {
+        "minLength": 6
+      },
+      "outcome": "safe_degrade",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {},
+      "summary": "Showing walks with a minimum length of 6 km or more.",
+      "elapsedMs": 4150
+    },
+    {
+      "id": "LLo03",
+      "category": "Length lower bound",
+      "text": "hikes at least 40 kilometres",
+      "expected": {
+        "minLength": 40
+      },
+      "outcome": "safe_degrade",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {},
+      "summary": "Showing hikes of at least 40 km with no other constraints.",
+      "elapsedMs": 3842
+    },
+    {
+      "id": "R01",
+      "category": "Region or place",
+      "text": "walk in Cornwall coastal area",
+      "expected": {
+        "region": {
+          "contains": "Cornwall"
+        }
+      },
+      "outcome": "safe_degrade",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "Cornwall",
+        "terrain": "coastal"
+      },
+      "summary": "Searching for coastal walks in Cornwall.",
+      "elapsedMs": 9929
+    },
+    {
+      "id": "R02",
+      "category": "Region or place",
+      "text": "hikes near Lake District",
+      "expected": {
+        "region": {
+          "contains": "Lake District"
+        }
+      },
+      "outcome": "safe_degrade",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "Lake District"
+      },
+      "summary": "Searching for hikes in the Lake District area with no additional filters.",
+      "elapsedMs": 7158
+    },
+    {
+      "id": "R03",
+      "category": "Region or place",
+      "text": "trails across Wales",
+      "expected": {
+        "search": {
+          "contains": "wales"
+        }
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "Wales"
+      },
+      "summary": "Searching for trails across Wales.",
+      "elapsedMs": 4886
+    },
+    {
+      "id": "T01",
+      "category": "Terrain or scenery",
+      "text": "coastal cliff paths please",
+      "expected": {
+        "terrain": {
+          "contains": "coast"
+        }
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "terrain": "coastal"
+      },
+      "summary": "Coastal cliff paths selected (cliffs and sea views), no region, length, or difficulty filters.",
+      "elapsedMs": 7499
+    },
+    {
+      "id": "T02",
+      "category": "Terrain or scenery",
+      "text": "forest trails for a day hike",
+      "expected": {
+        "terrain": {
+          "anyOfContains": [
+            "wood",
+            "forest",
+            "woodland"
+          ]
+        }
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "terrain": "forest",
+        "maxLength": 25
+      },
+      "summary": "Forest/woodland trails suitable for a day hike (approximately 8–25 km).",
+      "elapsedMs": 10147
+    },
+    {
+      "id": "T03",
+      "category": "Terrain or scenery",
+      "text": "I'd like moorland hikes",
+      "expected": {
+        "terrain": {
+          "contains": "moor"
+        }
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "terrain": "moorland"
+      },
+      "summary": "Filtered to show hikes across moorland terrain.",
+      "elapsedMs": 6235
+    },
+    {
+      "id": "C01",
+      "category": "Combined constraints",
+      "text": "Expert mixed terrain trail on the south coast of England under 110 km",
+      "expected": {
+        "difficulty": "expert",
+        "maxLength": 110,
+        "region": {
+          "contains": "South England Coast"
+        }
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "expert",
+        "terrain": "Mixed terrain",
+        "maxLength": 110,
+        "region": "South England Coast"
+      },
+      "summary": "Expert-level mixed-terrain trails on the South England Coast under 110 km.",
+      "elapsedMs": 9099
+    },
+    {
+      "id": "C02",
+      "category": "Combined constraints",
+      "text": "hard moorland hikes in Peak District under 50 km",
+      "expected": {
+        "difficulty": "hard",
+        "terrain": {
+          "contains": "moor"
+        },
+        "search": {
+          "contains": "peak"
+        },
+        "maxLength": 50
+      },
+      "outcome": "partial",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "hard",
+        "terrain": "moorland",
+        "maxLength": 50,
+        "region": "Peak District"
+      },
+      "summary": "Filtering for hard moorland hikes in the Peak District up to 50 km.",
+      "elapsedMs": 7331
+    },
+    {
+      "id": "C03",
+      "category": "Combined constraints",
+      "text": "moderate woodland walks near Yorkshire Dales under 30 kilometres",
+      "expected": {
+        "difficulty": "moderate",
+        "terrain": {
+          "contains": "wood"
+        },
+        "region": {
+          "contains": "Yorkshire Dales"
+        },
+        "maxLength": 30
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "Yorkshire Dales",
+        "difficulty": "moderate",
+        "terrain": "woodland",
+        "maxLength": 30,
+        "region": "Yorkshire Dales"
+      },
+      "summary": "Moderate woodland walks near the Yorkshire Dales up to 30 km.",
+      "elapsedMs": 14070
+    },
+    {
+      "id": "C04",
+      "category": "Combined constraints",
+      "text": "South Downs Way under 170 km",
+      "expected": {
+        "search": {
+          "contains": "south downs way"
+        },
+        "maxLength": 170
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "South Downs Way",
+        "maxLength": 170,
+        "region": "South Downs"
+      },
+      "summary": "Filtered to South Downs Way routes with total length under 170 km.",
+      "elapsedMs": 7229
+    },
+    {
+      "id": "A01",
+      "category": "Ambiguous or vague input",
+      "text": "something nice outdoors this weekend",
+      "scoring": "minimal_acceptable_only",
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {},
+      "summary": "No filters set — return a variety of pleasant outdoor trails for this weekend.",
+      "elapsedMs": 5750
+    },
+    {
+      "id": "A02",
+      "category": "Ambiguous or vague input",
+      "text": "not sure, maybe a scenic route",
+      "scoring": "minimal_acceptable_only",
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {},
+      "summary": "Showing scenic routes with no other constraints.",
+      "elapsedMs": 5979
+    },
+    {
+      "id": "E01",
+      "category": "Edge cases",
+      "text": "'; DROP TABLE trails; --",
+      "scoring": "minimal_acceptable_only",
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {},
+      "summary": "No valid hiking search terms detected; no filters applied.",
+      "elapsedMs": 6751
+    },
+    {
+      "id": "E02",
+      "category": "Edge cases",
+      "text": "15-45 km woodland trail moderate",
+      "expected": {
+        "maxLength": 45,
+        "difficulty": "moderate",
+        "terrain": {
+          "anyOfContains": [
+            "wood",
+            "forest",
+            "woodland"
+          ]
+        }
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "moderate",
+        "terrain": "woodland",
+        "maxLength": 45
+      },
+      "summary": "Moderate-difficulty woodland trails between 15 and 45 km.",
+      "elapsedMs": 4699
+    },
+    {
+      "id": "E03",
+      "category": "Edge cases",
+      "text": "expert  under   999   km !!!",
+      "expected": {
+        "difficulty": "expert",
+        "maxLength": 999
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "expert",
+        "maxLength": 999
+      },
+      "summary": "Filtered for expert difficulty with maximum length 999 km.",
+      "elapsedMs": 7020
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "summary": {
+    "title": "AI discover-parse gold set (sample)",
+    "runLabel": "unspecified",
+    "endpoint": "http://localhost:5000/api/ai/discover-parse",
+    "totalUtterances": 8,
+    "counts": {
+      "exact": 3,
+      "partial": 5,
+      "safe_degrade": 0,
+      "fail": 0,
+      "unscored": 0
+    },
+    "notes": [
+      "Edit this file to reflect the utterances you want to evaluate in Chapter 7.",
+      "Expected values are intentionally conservative (only include fields you are confident the parser should extract).",
+      "You can add more cases (20–50 total is a typical dissertation-sized gold set)."
+    ]
+  },
+  "results": [
+    {
+      "id": "G001",
+      "text": "Expert mixed terrain trail on the south coast of England under 110 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "mixed"
+        },
+        "maxLength": 110,
+        "search": {
+          "contains": "south coast"
+        }
+      },
+      "outcome": "partial",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "expert",
+        "terrain": "Mixed terrain",
+        "maxLength": 110,
+        "region": "South England Coast"
+      },
+      "summary": "Expert-level, mixed-terrain routes on the south coast of England up to 110 km.",
+      "elapsedMs": 10961
+    },
+    {
+      "id": "G002",
+      "text": "Expert coastal cliff path in South East England under 270 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "coast"
+        },
+        "maxLength": 270,
+        "search": {
+          "contains": "south east"
+        }
+      },
+      "outcome": "partial",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "expert",
+        "terrain": "coastal",
+        "maxLength": 270,
+        "region": "South East England and Downs"
+      },
+      "summary": "Expert-level coastal cliff path in South East England, up to 270 km.",
+      "elapsedMs": 11040
+    },
+    {
+      "id": "G003",
+      "text": "Expert mixed terrain hike in Hampshire and South Downs under 120 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "mixed"
+        },
+        "maxLength": 120,
+        "search": {
+          "anyOfContains": [
+            "hampshire",
+            "south downs"
+          ]
+        }
+      },
+      "outcome": "partial",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "expert",
+        "terrain": "Mixed terrain",
+        "maxLength": 120,
+        "region": "South Downs"
+      },
+      "summary": "Expert-level mixed-terrain hikes in Hampshire and South Downs under 120 km.",
+      "elapsedMs": 7034
+    },
+    {
+      "id": "G004",
+      "text": "Expert moorland trail on the south coast of England under 170 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "moor"
+        },
+        "maxLength": 170,
+        "search": {
+          "contains": "south coast"
+        }
+      },
+      "outcome": "partial",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "expert",
+        "terrain": "moorland",
+        "maxLength": 170,
+        "region": "South England Coast"
+      },
+      "summary": "Expert-level moorland trails on the south coast of England under 170 km.",
+      "elapsedMs": 12899
+    },
+    {
+      "id": "G005",
+      "text": "South Downs Way under 170 km",
+      "expected": {
+        "search": {
+          "contains": "south downs way"
+        },
+        "maxLength": 170
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "South Downs Way",
+        "maxLength": 170,
+        "region": "South Downs"
+      },
+      "summary": "Filter set for the South Downs Way with a maximum length of 170 km.",
+      "elapsedMs": 11572
+    },
+    {
+      "id": "G006",
+      "text": "Saxon Shore Way coastal under 270 km",
+      "expected": {
+        "search": {
+          "contains": "saxon shore way"
+        },
+        "terrain": {
+          "contains": "coast"
+        },
+        "maxLength": 270
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "Saxon Shore Way",
+        "terrain": "coastal",
+        "maxLength": 270
+      },
+      "summary": "Search for Saxon Shore Way with coastal terrain and length under 270 km.",
+      "elapsedMs": 11431
+    },
+    {
+      "id": "G007",
+      "text": "Vanguard Way under 120 km",
+      "expected": {
+        "search": {
+          "contains": "vanguard way"
+        },
+        "maxLength": 120
+      },
+      "outcome": "exact",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "search": "Vanguard Way",
+        "maxLength": 120
+      },
+      "summary": "Filtering for Vanguard Way routes with length up to 120 km.",
+      "elapsedMs": 9389
+    },
+    {
+      "id": "G008",
+      "text": "Expert coastal trail under 55 km in South England Coast",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "coast"
+        },
+        "maxLength": 55,
+        "search": {
+          "contains": "south england coast"
+        }
+      },
+      "outcome": "partial",
+      "httpStatus": 200,
+      "source": "openai",
+      "filters": {
+        "difficulty": "expert",
+        "terrain": "coastal",
+        "maxLength": 55,
+        "region": "South England Coast"
+      },
+      "summary": "Expert-level coastal trails up to 55 km in the South England Coast region.",
+      "elapsedMs": 9017
+    }
+  ]
+}

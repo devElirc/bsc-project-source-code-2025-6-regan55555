@@ -1,0 +1,152 @@
+{
+  "summary": {
+    "title": "AI discover-parse gold set (sample)",
+    "runLabel": "pathcheck",
+    "endpoint": "http://localhost:5000/api/ai/discover-parse",
+    "totalUtterances": 8,
+    "counts": {
+      "exact": 0,
+      "partial": 0,
+      "safe_degrade": 0,
+      "fail": 8,
+      "unscored": 0
+    },
+    "notes": [
+      "Edit this file to reflect the utterances you want to evaluate in Chapter 7.",
+      "Expected values are intentionally conservative (only include fields you are confident the parser should extract).",
+      "You can add more cases (20–50 total is a typical dissertation-sized gold set)."
+    ]
+  },
+  "results": [
+    {
+      "id": "G001",
+      "text": "Expert mixed terrain trail on the south coast of England under 110 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "mixed"
+        },
+        "maxLength": 110,
+        "search": {
+          "contains": "south coast"
+        }
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2045
+    },
+    {
+      "id": "G002",
+      "text": "Expert coastal cliff path in South East England under 270 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "coast"
+        },
+        "maxLength": 270,
+        "search": {
+          "contains": "south east"
+        }
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2012
+    },
+    {
+      "id": "G003",
+      "text": "Expert mixed terrain hike in Hampshire and South Downs under 120 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "mixed"
+        },
+        "maxLength": 120,
+        "search": {
+          "anyOfContains": [
+            "hampshire",
+            "south downs"
+          ]
+        }
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2022
+    },
+    {
+      "id": "G004",
+      "text": "Expert moorland trail on the south coast of England under 170 km",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "moor"
+        },
+        "maxLength": 170,
+        "search": {
+          "contains": "south coast"
+        }
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2012
+    },
+    {
+      "id": "G005",
+      "text": "South Downs Way under 170 km",
+      "expected": {
+        "search": {
+          "contains": "south downs way"
+        },
+        "maxLength": 170
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2019
+    },
+    {
+      "id": "G006",
+      "text": "Saxon Shore Way coastal under 270 km",
+      "expected": {
+        "search": {
+          "contains": "saxon shore way"
+        },
+        "terrain": {
+          "contains": "coast"
+        },
+        "maxLength": 270
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2015
+    },
+    {
+      "id": "G007",
+      "text": "Vanguard Way under 120 km",
+      "expected": {
+        "search": {
+          "contains": "vanguard way"
+        },
+        "maxLength": 120
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2005
+    },
+    {
+      "id": "G008",
+      "text": "Expert coastal trail under 55 km in South England Coast",
+      "expected": {
+        "difficulty": "expert",
+        "terrain": {
+          "contains": "coast"
+        },
+        "maxLength": 55,
+        "search": {
+          "contains": "south england coast"
+        }
+      },
+      "outcome": "fail",
+      "error": "timeout of 2000ms exceeded",
+      "elapsedMs": 2004
+    }
+  ]
+}

@@ -4,7 +4,15 @@ import { ListTrailsQueryParams } from "@workspace/api-zod";
 
 const router: IRouter = Router();
 const OPENAI_TIMEOUT_MS = 20_000;
-const UI_FILTER_KEYS = new Set(["search", "difficulty", "terrain", "maxLength", "region"]);
+const UI_FILTER_KEYS = new Set([
+  "search",
+  "difficulty",
+  "terrain",
+  "maxLength",
+  "minLength",
+  "region",
+  "scenery",
+]);
 
 const LlmFiltersSchema = z.object({
   search: z.string().nullable().optional(),
@@ -323,10 +331,16 @@ router.post("/ai/discover-parse", async (req: Request, res: Response) => {
       return;
     }
 
+    const openAiDisabled =
+      process.env.DISABLE_OPENAI === "true" || process.env.DISABLE_OPENAI === "1";
     const hasKey =
-      typeof process.env.OPENAI_API_KEY === "string" && process.env.OPENAI_API_KEY.trim().length > 0;
+      !openAiDisabled &&
+      typeof process.env.OPENAI_API_KEY === "string" &&
+      process.env.OPENAI_API_KEY.trim().length > 0;
     if (process.env.NODE_ENV === "development") {
-      console.log(`[ai-discover] has OPENAI_API_KEY: ${hasKey ? "yes" : "no"}`);
+      console.log(
+        `[ai-discover] OPENAI disabled flag: ${openAiDisabled ? "yes" : "no"}; effective LLM path: ${hasKey ? "yes" : "no"}`,
+      );
     }
 
     let source: "openai" | "rules" = "rules";

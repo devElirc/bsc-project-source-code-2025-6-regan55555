@@ -1,0 +1,24 @@
+{
+  "environment": {
+    "node": "v22.19.0",
+    "platform": "Windows_NT 10.0.19045",
+    "cpus": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "ramBytes": 34241392640,
+    "ramGb": 31.9,
+    "trailRowCount": 189,
+    "apiBaseUrl": "http://localhost:5001",
+    "perfPhase": "discover",
+    "discoverExpectedSource": "rules",
+    "perfN": 20
+  },
+  "tableRows": [
+    {
+      "endpoint": "POST /api/ai/discover-parse",
+      "condition": "Rules-only mode",
+      "n": 20,
+      "meanMs": 3,
+      "stdMs": 1.1,
+      "notes": "No external LLM request."
+    }
+  ]
+}

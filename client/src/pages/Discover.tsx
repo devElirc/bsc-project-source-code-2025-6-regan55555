@@ -25,7 +25,9 @@ function keepVisibleFilters(f: ListTrailsParams): ListTrailsParams {
     difficulty: f.difficulty,
     terrain: f.terrain,
     maxLength: f.maxLength,
+    minLength: f.minLength,
     region: f.region,
+    scenery: f.scenery,
   };
 }
 

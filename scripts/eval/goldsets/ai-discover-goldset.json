@@ -1,0 +1,196 @@
+{
+  "title": "AI discover-parse gold set (dissertation Tables 8.5–8.6)",
+  "notes": [
+    "category must match dissertation Table 8.6 rows exactly.",
+    "scoring=minimal_acceptable_only: Exact if response has ≤1 substantive key and it is search (or completely empty filters). Useful for ambiguous utterances.",
+    "After API changes, minLength/scenery appear in discover-parse JSON when inferred."
+  ],
+  "categoriesOrder": [
+    "Difficulty only",
+    "Length upper bound",
+    "Length lower bound",
+    "Region or place",
+    "Terrain or scenery",
+    "Combined constraints",
+    "Ambiguous or vague input",
+    "Edge cases"
+  ],
+  "cases": [
+    {
+      "id": "D01",
+      "category": "Difficulty only",
+      "text": "easy family walks",
+      "expected": { "difficulty": "easy" }
+    },
+    {
+      "id": "D02",
+      "category": "Difficulty only",
+      "text": "moderate hiking routes",
+      "expected": { "difficulty": "moderate" }
+    },
+    {
+      "id": "D03",
+      "category": "Difficulty only",
+      "text": "I'm looking for hard trails only",
+      "expected": { "difficulty": "hard" }
+    },
+    {
+      "id": "LHi01",
+      "category": "Length upper bound",
+      "text": "trails under 12 km please",
+      "expected": { "maxLength": 12 }
+    },
+    {
+      "id": "LHi02",
+      "category": "Length upper bound",
+      "text": "below 65 km hikes",
+      "expected": { "maxLength": 65 }
+    },
+    {
+      "id": "LHi03",
+      "category": "Length upper bound",
+      "text": "shorter than 200 km coastal routes maximum",
+      "expected": { "maxLength": 200 }
+    },
+    {
+      "id": "LLo01",
+      "category": "Length lower bound",
+      "text": "routes longer than 18 km",
+      "expected": { "minLength": 18 }
+    },
+    {
+      "id": "LLo02",
+      "category": "Length lower bound",
+      "text": "walks over 6 km minimum",
+      "expected": { "minLength": 6 }
+    },
+    {
+      "id": "LLo03",
+      "category": "Length lower bound",
+      "text": "hikes at least 40 kilometres",
+      "expected": { "minLength": 40 }
+    },
+    {
+      "id": "R01",
+      "category": "Region or place",
+      "text": "walk in Cornwall coastal area",
+      "expected": { "region": { "contains": "Cornwall" } }
+    },
+    {
+      "id": "R02",
+      "category": "Region or place",
+      "text": "hikes near Lake District",
+      "expected": { "region": { "contains": "Lake District" } }
+    },
+    {
+      "id": "R03",
+      "category": "Region or place",
+      "text": "trails across Wales",
+      "expected": {
+        "search": { "contains": "wales" }
+      }
+    },
+    {
+      "id": "T01",
+      "category": "Terrain or scenery",
+      "text": "coastal cliff paths please",
+      "expected": {
+        "terrain": { "contains": "coast" }
+      }
+    },
+    {
+      "id": "T02",
+      "category": "Terrain or scenery",
+      "text": "forest trails for a day hike",
+      "expected": {
+        "terrain": { "anyOfContains": ["wood", "forest", "woodland"] }
+      }
+    },
+    {
+      "id": "T03",
+      "category": "Terrain or scenery",
+      "text": "I'd like moorland hikes",
+      "expected": {
+        "terrain": { "contains": "moor" }
+      }
+    },
+    {
+      "id": "C01",
+      "category": "Combined constraints",
+      "text": "Expert mixed terrain trail on the south coast of England under 110 km",
+      "expected": {
+        "difficulty": "expert",
+        "maxLength": 110,
+        "region": { "contains": "South England Coast" }
+      }
+    },
+    {
+      "id": "C02",
+      "category": "Combined constraints",
+      "text": "hard moorland hikes in Peak District under 50 km",
+      "expected": {
+        "difficulty": "hard",
+        "terrain": { "contains": "moor" },
+        "search": { "contains": "peak" },
+        "maxLength": 50
+      }
+    },
+    {
+      "id": "C03",
+      "category": "Combined constraints",
+      "text": "moderate woodland walks near Yorkshire Dales under 30 kilometres",
+      "expected": {
+        "difficulty": "moderate",
+        "terrain": { "contains": "wood" },
+        "region": { "contains": "Yorkshire Dales" },
+        "maxLength": 30
+      }
+    },
+    {
+      "id": "C04",
+      "category": "Combined constraints",
+      "text": "South Downs Way under 170 km",
+      "expected": {
+        "search": { "contains": "south downs way" },
+        "maxLength": 170
+      }
+    },
+    {
+      "id": "A01",
+      "category": "Ambiguous or vague input",
+      "text": "something nice outdoors this weekend",
+      "scoring": "minimal_acceptable_only"
+    },
+    {
+      "id": "A02",
+      "category": "Ambiguous or vague input",
+      "text": "not sure, maybe a scenic route",
+      "scoring": "minimal_acceptable_only"
+    },
+    {
+      "id": "E01",
+      "category": "Edge cases",
+      "text": "'; DROP TABLE trails; --",
+      "scoring": "minimal_acceptable_only"
+    },
+    {
+      "id": "E02",
+      "category": "Edge cases",
+      "text": "15-45 km woodland trail moderate",
+      "expected": {
+        "maxLength": 45,
+        "difficulty": "moderate",
+        "terrain": { "anyOfContains": ["wood", "forest", "woodland"] }
+      }
+    },
+    {
+      "id": "E03",
+      "category": "Edge cases",
+      "text": "expert  under   999   km !!!",
+      "expected": {
+        "difficulty": "expert",
+        "maxLength": 999
+      }
+    }
+  ]
+}

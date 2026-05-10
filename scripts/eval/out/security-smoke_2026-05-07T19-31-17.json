@@ -1,0 +1,35 @@
+{
+  "apiBaseUrl": "http://localhost:5000",
+  "rows": [
+    {
+      "check": "Client bundle secret search",
+      "expectedObservation": "Built client assets should not contain OPENAI_API_KEY or actual secret values.",
+      "result": "PASS: scanned 3 asset(s) under dist; no forbidden secret markers found.",
+      "pass": true
+    },
+    {
+      "check": "SQL-like search input",
+      "expectedObservation": "Search terms with quotes or SQL-like fragments should not break filtering.",
+      "result": "PASS: all payloads returned HTTP < 500 (5 probes; max status 200)",
+      "pass": true
+    },
+    {
+      "check": "Password storage",
+      "expectedObservation": "Stored password values should be hashes, not plain text.",
+      "result": "PASS: sampled 3 non-null password_hash value(s); all match bcrypt format ($2…).",
+      "pass": true
+    },
+    {
+      "check": "Session behaviour",
+      "expectedObservation": "Invalid or expired sessions should not expose protected user data.",
+      "result": "PASS: PATCH /api/auth/profile with bogus sid returned HTTP 401 ({\"error\":\"Unauthorized\"})",
+      "pass": true
+    },
+    {
+      "check": "Media proxy safety",
+      "expectedObservation": "Missing or invalid proxy URLs should be handled safely.",
+      "result": "PASS: missing url:HTTP400; invalid url text:HTTP400; non-http scheme:HTTP400 (no crashes, JSON error bodies for bad input).",
+      "pass": true
+    }
+  ]
+}

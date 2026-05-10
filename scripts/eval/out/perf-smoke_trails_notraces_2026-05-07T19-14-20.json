@@ -1,0 +1,32 @@
+{
+  "environment": {
+    "node": "v22.19.0",
+    "platform": "Windows_NT 10.0.19045",
+    "cpus": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "ramBytes": 34241392640,
+    "ramGb": 31.9,
+    "trailRowCount": 189,
+    "apiBaseUrl": "http://localhost:5000",
+    "perfPhase": "trails",
+    "discoverExpectedSource": null,
+    "perfN": 20
+  },
+  "tableRows": [
+    {
+      "endpoint": "GET /api/trails",
+      "condition": "Default query",
+      "n": 20,
+      "meanMs": 4,
+      "stdMs": 1.1,
+      "notes": "Uses current trail dataset."
+    },
+    {
+      "endpoint": "GET /api/trails",
+      "condition": "Heavy filter combination",
+      "n": 20,
+      "meanMs": 4,
+      "stdMs": 0.9,
+      "notes": "difficulty=expert, terrain=coastal, maxLength=55"
+    }
+  ]
+}
